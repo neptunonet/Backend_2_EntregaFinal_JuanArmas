@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticateUser } from '../middlewares/auth.js';
 import userRepository from '../repositories/user.repository.js';
-import { generateToken } from '../utils/index.js';
+import { generateToken, invalidateToken } from '../utils/index.js';
 
 const router = Router();
 
@@ -39,6 +39,12 @@ router.get('/current', authenticateUser, async (req, res) => {
 
 router.post('/logout', authenticateUser, (req, res) => {
   try {
+    // Obtener el token del usuario
+    const token = req.cookies.token || req.headers['authorization']?.split(' ')[1];
+
+    // Invalidar el token
+    invalidateToken(token);
+
     // Eliminar la cookie del token
     res.clearCookie('token');
         
