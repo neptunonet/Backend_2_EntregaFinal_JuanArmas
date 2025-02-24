@@ -48,7 +48,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDVlOTg0ZDhlOWY3ZDA2N2U0NSIsImVtYWlsIjoiamFybWFzQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDA0Mjk5MzQsImV4cCI6MTc0MDQzMzUzNH0.9wh0nbiKlukq_dXLyyXtAmwfcgtMp2Mgof9kF22yvvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDVlOTg0ZDhlOWY3ZDA2N2U0NSIsImVtYWlsIjoiamFybWFzQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQwNDM2MjExLCJleHAiOjE3NDA0Mzk4MTF9.yr8sN1LPaFgUoLpPBHpVd5u2S8BRQE4zosbcVUXTPCU",
 									"type": "string"
 								}
 							]
@@ -70,7 +70,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Administracion de Usuarios"
 		},
 		{
 			"name": "Sesión",
@@ -177,7 +178,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"productId\": \"product_id_here\",\n  \"quantity\": 1\n}"
+							"raw": "{\n  \"productId\": \"67bcf00334fc755c513daf84\",\n  \"quantity\": 3\n}"
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/cart/add",
@@ -255,6 +256,16 @@
 				{
 					"name": "Crear Producto (Admin)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDVlOTg0ZDhlOWY3ZDA2N2U0NSIsImVtYWlsIjoiamFybWFzQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQwNDM1MjMzLCJleHAiOjE3NDA0Mzg4MzN9.FtCPjw-B88u-iaGCyc_QO9LCSsmsi8-Jl7C0cnUR1is",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -268,7 +279,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Nuevo Producto\",\n  \"description\": \"Descripción del producto\",\n  \"price\": 19.99,\n  \"stock\": 100\n}"
+							"raw": "{\n  \"name\": \"Fideos Duritos\",\n  \"description\": \"Fideos Tallarines\",\n  \"price\": 1.22,\n  \"stock\": 100,\n  \"category\": \"Almacen\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/products",
@@ -316,6 +327,13 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDVlOTg0ZDhlOWY3ZDA2N2U0NSIsImVtYWlsIjoiamFybWFzQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDA0MzQ5MjcsImV4cCI6MTc0MDQzODUyN30.lu8RgpX4TWtGU3GU1T3_CCvpiKnDMAmdPq6PGjLExGE",
+			"type": "default"
 		}
 	]
 }
