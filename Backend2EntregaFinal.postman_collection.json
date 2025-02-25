@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "2e2bb5dc-9007-4c47-91e0-6b6bf51a9ce9",
-		"name": "Backend EntregaFinal",
+		"name": "Backend2EntregaFinal",
 		"description": "Colección para probar todos los endpoints del proyecto Backend EntregaFinal",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "39265402"
@@ -48,7 +48,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDVlOTg0ZDhlOWY3ZDA2N2U0NSIsImVtYWlsIjoiamFybWFzQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQwNDM2MjExLCJleHAiOjE3NDA0Mzk4MTF9.yr8sN1LPaFgUoLpPBHpVd5u2S8BRQE4zosbcVUXTPCU",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -88,7 +88,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"jarmas@example.com\",\n  \"password\": \"contrasenia123\"\n}"
+							"raw": "{\n  \"email\": \"mrodriguez@example.com\",\n  \"password\": \"contrasenia123\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/session/login",
@@ -138,15 +138,91 @@
 			"name": "Carrito",
 			"item": [
 				{
-					"name": "Obtener Carrito",
+					"name": "Add Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDJhOTg0ZDhlOWY3ZDA2N2UzZiIsImVtYWlsIjoibXJvZHJpZ3VlekBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQwNDk3ODQ5LCJleHAiOjE3NDA1MDE0NDl9.ReMS3G5y2cl6A9WvYWlcPwAXHPaTUOdFwAOoaPiE91E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"67bcf00334fc755c513daf84\",\n  \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/cart/67bde3da53f1ae802c8f8151/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"cart",
+								"67bde3da53f1ae802c8f8151",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cart",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}"
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crea Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDJhOTg0ZDhlOWY3ZDA2N2UzZiIsImVtYWlsIjoibXJvZHJpZ3VlekBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQwNDk3ODQ5LCJleHAiOjE3NDA1MDE0NDl9.ReMS3G5y2cl6A9WvYWlcPwAXHPaTUOdFwAOoaPiE91E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
-						],
+						},
 						"url": {
 							"raw": "http://localhost:4000/api/cart",
 							"protocol": "http",
@@ -163,25 +239,22 @@
 					"response": []
 				},
 				{
-					"name": "Agregar Producto al Carrito",
+					"name": "ObtenerCartEspecifico",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"productId\": \"67bcf00334fc755c513daf84\",\n  \"quantity\": 3\n}"
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDJhOTg0ZDhlOWY3ZDA2N2UzZiIsImVtYWlsIjoibXJvZHJpZ3VlekBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQwNDk4ODE0LCJleHAiOjE3NDA1MDI0MTR9.8qyKFTPp2rV3xrcgBUQWJ9RorCHJ1m9idkEyYC136G8",
+									"type": "string"
+								}
+							]
 						},
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/cart/add",
+							"raw": "http://localhost:4000/api/cart/67bde3da53f1ae802c8f8151",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -190,24 +263,29 @@
 							"path": [
 								"api",
 								"cart",
-								"add"
+								"67bde3da53f1ae802c8f8151"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Realizar Compra",
+					"name": "VaciaCartEspecifico",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}"
-							}
-						],
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDJhOTg0ZDhlOWY3ZDA2N2UzZiIsImVtYWlsIjoibXJvZHJpZ3VlekBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQwNDk4ODE0LCJleHAiOjE3NDA1MDI0MTR9.8qyKFTPp2rV3xrcgBUQWJ9RorCHJ1m9idkEyYC136G8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/cart/{{cartId}}/purchase",
+							"raw": "http://localhost:4000/api/cart/67bde3da53f1ae802c8f8151/empty",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -216,8 +294,8 @@
 							"path": [
 								"api",
 								"cart",
-								"{{cartId}}",
-								"purchase"
+								"67bde3da53f1ae802c8f8151",
+								"empty"
 							]
 						}
 					},
@@ -261,7 +339,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDVlOTg0ZDhlOWY3ZDA2N2U0NSIsImVtYWlsIjoiamFybWFzQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQwNDM1MjMzLCJleHAiOjE3NDA0Mzg4MzN9.FtCPjw-B88u-iaGCyc_QO9LCSsmsi8-Jl7C0cnUR1is",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDJhOTg0ZDhlOWY3ZDA2N2UzZiIsImVtYWlsIjoibXJvZHJpZ3VlekBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQwNDk4Mjk1LCJleHAiOjE3NDA1MDE4OTV9.0OL6KUdZjR8pBoiKx4If8h9ukI3Kj9zSrKm8DQDdQCI",
 									"type": "string"
 								}
 							]
@@ -279,7 +357,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Fideos Duritos\",\n  \"description\": \"Fideos Tallarines\",\n  \"price\": 1.22,\n  \"stock\": 100,\n  \"category\": \"Almacen\"\n}"
+							"raw": "{\n  \"name\": \"Polenta Rica\",\n  \"description\": \"Polenta Instantanea\",\n  \"price\": 1.12,\n  \"stock\": 100,\n  \"category\": \"Almacen\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/products",
@@ -302,17 +380,22 @@
 			"name": "Tickets",
 			"item": [
 				{
-					"name": "Obtener Tickets",
+					"name": "Realiza Compra",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}"
-							}
-						],
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YmNjZDJhOTg0ZDhlOWY3ZDA2N2UzZiIsImVtYWlsIjoibXJvZHJpZ3VlekBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQwNDk4ODE0LCJleHAiOjE3NDA1MDI0MTR9.8qyKFTPp2rV3xrcgBUQWJ9RorCHJ1m9idkEyYC136G8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/tickets",
+							"raw": "http://localhost:4000/api/cart/67bde3da53f1ae802c8f8151/purchase",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -320,7 +403,9 @@
 							"port": "4000",
 							"path": [
 								"api",
-								"tickets"
+								"cart",
+								"67bde3da53f1ae802c8f8151",
+								"purchase"
 							]
 						}
 					},

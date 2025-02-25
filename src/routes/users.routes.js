@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
       last_name: lastName, 
       email, 
       password: hashedPassword,
-      role: role || 'user' // Si se proporciona un rol, úsalo; de lo contrario, usa 'user'
+      role: role || 'user' 
     });
     const token = generateToken(newUser);
     res.cookie('token', token, { httpOnly: true }).json({ user: newUser });

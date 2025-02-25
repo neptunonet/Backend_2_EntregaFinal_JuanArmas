@@ -43,7 +43,6 @@ class CartDao {
   }
 
   async createCart(userId) {
-    //console.log('DAO creating cart for user:', userId); // Para depuración
     const newCart = new Cart({
       userId,
       items: []

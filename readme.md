@@ -43,7 +43,7 @@ Aplicar prácticas como patrones de diseño, mailing, variables de entorno. etc.
  - Además, archivo .env para poder correr el proyecto
 
 ##  Postman
-  - Se encuentra disponible el en Github el archivo *Backend EntregaFinal.postman_collection.json* para importar en Postman para tener una visión más clara de las rutas y los endpoints.
+  - Se encuentra disponible el en Github el archivo *Backend2EntregaFinal.postman_collection.json* para importar en Postman para tener una visión más clara de las rutas y los endpoints.
 
 ## Dependencias:
 
