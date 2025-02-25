@@ -10,7 +10,7 @@ export const authenticateUser = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log('Decoded token:', decoded); // Para depuración
+    //console.log('Decoded token:', decoded); // Para depuración
     req.user = decoded;
     next();
   } catch (error) {

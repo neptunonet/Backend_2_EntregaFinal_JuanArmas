@@ -79,7 +79,7 @@ class CartRepository {
   }
 
   async createCart(userId) {
-    console.log('Repository creating cart for user:', userId); // Para depuración
+    //console.log('Repository creating cart for user:', userId); // Para depuración
     return await cartDao.createCart(userId);
   }
 

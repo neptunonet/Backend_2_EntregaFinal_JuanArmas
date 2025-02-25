@@ -32,11 +32,11 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     
-    console.log('User object:', user); // Para depuración
+    //console.log('User object:', user); // Para depuración
     
     const token = generateToken(user);
     
-    console.log('Generated token:', token); // Para depuración
+    //console.log('Generated token:', token); // Para depuración
 
     res.cookie('token', token, { httpOnly: true }).json({ user, token });
   } catch (error) {
