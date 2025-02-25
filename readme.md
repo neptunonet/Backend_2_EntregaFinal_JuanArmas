@@ -45,4 +45,27 @@ Aplicar prácticas como patrones de diseño, mailing, variables de entorno. etc.
 ##  Postman
   - Se encuentra disponible el en Github el archivo *Backend EntregaFinal.postman_collection.json* para importar en Postman para tener una visión más clara de las rutas y los endpoints.
 
+## Dependencias:
+
+Este proyecto utiliza las siguientes dependencias:
+
+```json
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "D": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+```
+git clone https://github.com/neptunonet/Backend_2_EntregaFinal_JuanArmas.git
 
