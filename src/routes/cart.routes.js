@@ -81,4 +81,37 @@ router.post('/:cid/purchase', authenticateUser, async (req, res) => {
   }
 });
 
+router.post('/:cartId/items', authenticateUser, authorizeUser, async (req, res) => {
+  try {
+    const { cartId } = req.params;
+    const { productId, quantity } = req.body;
+
+    if (!productId || !quantity) {
+      return res.status(400).json({ message: 'Product ID and quantity are required' });
+    }
+
+    const updatedCart = await cartRepository.addItemToCart(cartId, productId, quantity);
+    res.json(updatedCart);
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    res.status(500).json({ message: 'Error adding item to cart', error: error.message });
+  }
+});
+
+router.post('/', authenticateUser, authorizeUser, async (req, res) => {
+  try {
+    console.log('User from request:', req.user); // Para depuración
+    if (!req.user || !req.user.id) {
+      return res.status(400).json({ message: 'User ID not found in token' });
+    }
+    const userId = req.user.id;
+    console.log('Creating cart for user:', userId);
+    const newCart = await cartRepository.createCart(userId);
+    res.status(201).json(newCart);
+  } catch (error) {
+    console.error('Error creating cart:', error);
+    res.status(500).json({ message: 'Error creating cart', error: error.message });
+  }
+});
+
 export default router;

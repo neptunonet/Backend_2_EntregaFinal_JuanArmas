@@ -42,6 +42,29 @@ class CartDao {
     return await Cart.findByIdAndUpdate(cartId, updateData, { new: true });
   }
 
+  async createCart(userId) {
+    //console.log('DAO creating cart for user:', userId); // Para depuración
+    const newCart = new Cart({
+      userId,
+      items: []
+    });
+    return await newCart.save();
+  }
+
+  async getCartById(cartId) {
+    return await Cart.findById(cartId);
+  }
+  async updateCart(cartId, updateData) {
+    return await Cart.findByIdAndUpdate(cartId, updateData, { new: true });
+  }
+  async getCartByUserId(userId) {
+    return await Cart.findOne({ userId });
+  }
 }
+
+
+
+
+
 
 export default new CartDao();

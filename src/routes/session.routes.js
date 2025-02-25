@@ -5,6 +5,25 @@ import { generateToken, invalidateToken } from '../utils/index.js';
 
 const router = Router();
 
+// router.post('/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await userRepository.validateUser(email, password);
+//     if (!user) {
+//       return res.status(401).json({ message: 'Invalid credentials' });
+//     }
+//     const token = generateToken(user);
+    
+//     // Imprimir el token en la consola
+//     //console.log('Token generado:', token);
+
+//     res.cookie('token', token, { httpOnly: true }).json({ user, token });
+//   } catch (error) {
+//     console.error('Error en el inicio de sesión:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -12,15 +31,17 @@ router.post('/login', async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
+    
+    console.log('User object:', user); // Para depuración
+    
     const token = generateToken(user);
     
-    // Imprimir el token en la consola
-    //console.log('Token generado:', token);
+    console.log('Generated token:', token); // Para depuración
 
     res.cookie('token', token, { httpOnly: true }).json({ user, token });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 });
 

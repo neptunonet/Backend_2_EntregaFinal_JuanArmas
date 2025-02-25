@@ -4,15 +4,11 @@ class CartDto {
     this.userId = cart.userId;
     this.items = cart.items.map(item => ({
       productId: item.productId,
-      quantity: item.quantity,
-      name: item.name,
-      price: item.price
+      quantity: item.quantity
     }));
-    this.total = this.calculateTotal();
-  }
-
-  calculateTotal() {
-    return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    this.total = cart.total;
+    this.createdAt = cart.createdAt;
+    this.updatedAt = cart.updatedAt;
   }
 }
 

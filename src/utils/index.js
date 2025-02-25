@@ -34,6 +34,20 @@ export const isValidPassword = async (user, password) => {
   return bcrypt.compare(password, user.password);
 };
 
+// export const generateToken = (user) => {
+//   return jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+// };
+
 export const generateToken = (user) => {
-  return jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+  if (!user || !user._id) {
+    throw new Error('Invalid user object: missing _id');
+  }
+
+  const payload = {
+    id: user._id.toString(),
+    email: user.email,
+    role: user.role
+  };
+  
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
 };

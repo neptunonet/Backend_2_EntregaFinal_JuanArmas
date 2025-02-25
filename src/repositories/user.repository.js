@@ -29,13 +29,33 @@ class UserRepository {
     return deletedUser ? new UserDto(deletedUser) : null;
   }
 
-  async validateUser(email, password) {
-    const user = await UserDao.getUserByEmail(email);
-    if (user && await isValidPassword(user, password)) {
-      return new UserDto(user);
+  // async validateUser(email, password) {
+  //   const user = await UserDao.getUserByEmail(email);
+  //   if (user && await isValidPassword(user, password)) {
+  //     return new UserDto(user);
+  //   }
+  //   return null;
+  // }
+
+
+  async validateUser (email, password) {
+    const user = await UserDao.findByEmail(email);
+    if (!user) {
+      return null;
     }
-    return null;
-  }
+    
+    const isValid = await isValidPassword(user, password);
+    if (!isValid) {
+      return null;
+    }
+  
+    return {
+      _id: user._id,
+      email: user.email,
+      role: user.role
+
+    };
+  };
 
   async getUserByEmail(email) {
     const user = await UserDao.getUserByEmail(email);
