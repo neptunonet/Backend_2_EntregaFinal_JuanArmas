@@ -52,14 +52,24 @@ class CartDao {
   }
 
   async getCartById(cartId) {
-    return await Cart.findById(cartId);
+    return await Cart.findById(cartId).populate('items.productId');
   }
+
   async updateCart(cartId, updateData) {
     return await Cart.findByIdAndUpdate(cartId, updateData, { new: true });
   }
   async getCartByUserId(userId) {
     return await Cart.findOne({ userId });
   }
+  
+  async emptyCart(cartId) {
+    const cart = await Cart.findById(cartId);
+    if (!cart) return null;
+
+    cart.items = [];
+    return await cart.save();
+  }
+
 }
 
 

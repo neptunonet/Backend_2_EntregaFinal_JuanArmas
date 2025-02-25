@@ -79,11 +79,13 @@ class CartRepository {
   }
 
   async createCart(userId) {
-    //console.log('Repository creating cart for user:', userId); // Para depuración
     return await cartDao.createCart(userId);
   }
 
-
+  async emptyCart(cartId) {
+    const emptiedCart = await cartDao.emptyCart(cartId);
+    return emptiedCart ? new CartDto(emptiedCart) : null;
+  }
 
   
 }
