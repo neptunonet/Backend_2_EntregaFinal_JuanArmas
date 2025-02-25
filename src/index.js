@@ -10,15 +10,11 @@ import productRoutes from './routes/product.routes.js';
 import cartRoutes from './routes/cart.routes.js';
 import ticketRoutes from './routes/ticket.routes.js';
 
-
 const app = express();
 dotenv.config();
 
-
 //settings
 const PORT = process.env.PORT || 3000;
-
-
 
 // middlewares
 app.use(express.json());
@@ -29,22 +25,22 @@ app.use(cookieParser());
 configurePassport(passport); 
 app.use(passport.initialize());
 
-
-
 //routes
 app.get("/", (req, res) => {
   res.json({ title: "Home Page" });
 });
-app.use('/',userRoutes)
+
+//API routes
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/session', sessionRoutes);
 app.use('/api/tickets', ticketRoutes);
 
-
-//listeners
+//database connection
 connectDb(process.env.MONGODB_URL);
+
+// listeners
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
