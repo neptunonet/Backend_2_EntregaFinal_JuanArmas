@@ -92,20 +92,14 @@ router.post('/:cid/purchase', authenticateUser, async (req, res) => {
   }
 });
 
-router.post('/:cartId/items', authenticateUser, authorizeUser, async (req, res) => {
+router.post('/:cartId/items', authenticateUser, async (req, res) => {
   try {
     const { cartId } = req.params;
     const { productId, quantity } = req.body;
-
-    if (!productId || !quantity) {
-      return res.status(400).json({ message: 'Product ID and quantity are required' });
-    }
-
-    const updatedCart = await cartRepository.addItemToCart(cartId, productId, quantity);
+    const updatedCart = await cartRepository.addToCart(cartId, productId, quantity);
     res.json(updatedCart);
   } catch (error) {
-    console.error('Error adding item to cart:', error);
-    res.status(500).json({ message: 'Error adding item to cart', error: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 

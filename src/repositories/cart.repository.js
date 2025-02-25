@@ -24,48 +24,30 @@ class CartRepository {
     return new CartDto(updatedCart);
   }
 
-  async addItemToCart(cartId, productId, quantity) {
-    const cart = await cartDao.getCartById(cartId);
+  async addToCart(userId, productId, quantity) {
+    let cart = await cartDao.getCartByUserId(userId);
+  
     if (!cart) {
-      throw new Error('Cart not found');
+      cart = await this.createCart(userId);
     }
-
-    const product = await productRepository.getProductById(productId);
-    if (!product) {
-      throw new Error('Product not found');
-    }
-
-    const existingItemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
-
-    if (existingItemIndex > -1) {
-      // Si el producto ya está en el carrito, actualiza la cantidad
+  
+    const existingItemIndex = cart.items.findIndex(
+      item => item.productId.toString() === productId.toString()
+    );
+  
+    if (existingItemIndex !== -1) {
       cart.items[existingItemIndex].quantity += quantity;
     } else {
-      // Si es un nuevo producto, añádelo al carrito
-      cart.items.push({
-        productId: productId,
-        quantity: quantity
-      });
+      cart.items.push({ productId, quantity });
     }
-
-    // Actualiza el carrito
-    const updatedCart = await cartDao.updateCart(cartId, { items: cart.items });
+  
+    const updatedCart = await cartDao.updateCart(cart._id, { items: cart.items });
     return new CartDto(updatedCart);
   }
 
   async getCartByUserId(userId) {
     const cart = await cartDao.getCartByUserId(userId);
     return cart ? new CartDto(cart) : null;
-  }
-
-  async addToCart(userId, productId, quantity) {
-    const updatedCart = await cartDao.addToCart(userId, productId, quantity);
-    return new CartDto(updatedCart);
-  }
-
-  async removeFromCart(userId, productId) {
-    const updatedCart = await cartDao.removeFromCart(userId, productId);
-    return updatedCart ? new CartDto(updatedCart) : null;
   }
 
   async clearCart(userId) {
